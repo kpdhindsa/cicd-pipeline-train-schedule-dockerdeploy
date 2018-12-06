@@ -41,7 +41,7 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                
                     script {
                         sh "sshpass -p Trustwave00! ssh ubuntu@52.14.221.2 sudo docker pull kpdhindsa00/train-schedule"
                         try {
@@ -52,7 +52,7 @@ pipeline {
                         }
                         sh "sshpass -p Trustwave00! ssh ubuntu@52.14.221.2 sudo docker run --restart always --name train-schedule -p 8080:8080 -d kpdhindsa00/train-schedule"
                     }
-                }
+                
             }
         }
     }
