@@ -43,14 +43,14 @@ pipeline {
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
-                        sh "sshpass -p '$USERPASS' ssh $USERNAME@$prod_ip sudo docker pull kpdhindsa00/train-schedule:${env.BUILD_NUMBER}"
+                        sh "sshpass -p Trustwave00! ssh ubuntu@52.14.221.2 sudo docker pull kpdhindsa00/train-schedule:${env.BUILD_NUMBER}"
                         try {
-                            sh "sshpass -p '$USERPASS' ssh $USERNAME@$prod_ip sudo docker stop train-schedule"
-                            sh "sshpass -p '$USERPASS' ssh $USERNAME@$prod_ip sudo docker rm train-schedule"
+                            sh "sshpass -p Trustwave00! ssh ubuntu@52.14.221.2 sudo docker stop train-schedule"
+                            sh "sshpass -p Trustwave00! ssh ubuntu@52.14.221.2 sudo docker rm train-schedule"
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh "sshpass -p '$USERPASS' ssh $USERNAME@$prod_ip sudo docker run --restart always --name train-schedule -p 8080:8080 -d kpdhindsa00/train-schedule:${env.BUILD_NUMBER}"
+                        sh "sshpass -p Trustwave00! ssh ubuntu@52.14.221.2 sudo docker run --restart always --name train-schedule -p 8080:8080 -d kpdhindsa00/train-schedule:${env.BUILD_NUMBER}"
                     }
                 }
             }
